@@ -1,0 +1,7 @@
+# Python [Byte-compiled, Optimized, DLL]
+*.py[cod]
+
+# Potential CI Logs
+_ci_reports
+.coverage
+.cache
