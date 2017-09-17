@@ -33,6 +33,7 @@ def _get_source_filepaths(
         dir_source: typing.Optional[Path]=_PATH_DIR_SOURCE,
     ) -> "typing.Iterator[Path]":
     """Lazily search through the source file paths"""
+    LOGGER.info("Scanning '%s' directory for source files", dir_source)
     for path in dir_source.glob("*.gz"):
         yield path
 
@@ -40,6 +41,7 @@ def _get_source_filepaths(
 def _unzip_source_file(source: Path) -> Path:
     """Unzip a source file and return it's path"""
     target = source.parent / source.stem.replace("-", "_")  # DataFrameWriter no like `-` in paths
+    LOGGER.info("Unzipping source file '%s' to '%s'", source, target)
     with gzip.open(str(source)) as fh_in, target.open("wb") as fh_out:
         shutil.copyfileobj(fh_in, fh_out)
     return target
@@ -47,6 +49,7 @@ def _unzip_source_file(source: Path) -> Path:
 
 def _import_source_file(sparkapp: SparkApp, source: Path, schema: StructType) -> DataFrame:
     """Import the source flat file using the provided schema"""
+    LOGGER.info("Importing '%s' to Spark dataframe", source)
     dataframe = sparkapp.session.read.csv(
         str(source),
         schema=schema,
@@ -74,6 +77,7 @@ def main() -> int:
             )
         for unzipped_source_file in unzipped_source_files
         }
+    LOGGER.info("Serializing results to parquet")
     for output_filepath, dataframe in source_dataframes.items():
         sparkapp.save_df(dataframe, output_filepath)
 
