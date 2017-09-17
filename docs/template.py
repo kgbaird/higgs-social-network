@@ -21,7 +21,7 @@ LOGGER = logging.getLogger(__name__)
 def main() -> int:
     """A function to enclose business logic"""
     LOGGER.info("About to do something awesome")
-    sparkapp = SparkApp("higgs-social-network")
+    sparkapp = SparkApp("higgs-social-network", allow_local_io=True)  # Intend to run standalone
 
     return 0
 
