@@ -27,4 +27,13 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    pass
+    # pylint: disable=wrong-import-position, wrong-import-order, ungrouped-imports
+    import sys
+    import prm.utils.logging_ext
+
+    prm.utils.logging_ext.setup_logging_stdout_handler()
+
+    with SparkApp("higgs-social-network", allow_local_io=True):
+        RETURN_CODE = main()
+
+    sys.exit(RETURN_CODE)
