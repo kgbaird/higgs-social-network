@@ -18,8 +18,8 @@ from prm.spark.app import SparkApp
 
 LOGGER = logging.getLogger(__name__)
 _PATH_DIR_SCRIPTS = Path(os.environ["USERPROFILE"]) / "repos" / "higgs-social-network" / "scripts"
-_PATH_DIR_LOGS = _PATH_DIR_SCRIPTS / "logs"
 _PATH_DIR_OUTPUTS = Path(os.environ["USERPROFILE"]) / "scrap"
+_PATH_DIR_LOGS = _PATH_DIR_OUTPUTS / "logs"
 
 # =============================================================================
 # LIBRARIES, LOCATIONS, LITERALS go above here
@@ -95,6 +95,7 @@ class ExploratoryVisuals(PythonTask, HiggsTwitterParamMixin):
 def main() -> int:
     """A function to enclose the execution of business logic."""
     LOGGER.info("Beginning pipeline execution")
+    _PATH_DIR_LOGS.mkdir(exist_ok=True)
 
     LOGGER.info("Mutating luigi config to suppress duplicate logging")
     mutate_config({"core": {"no_configure_logging": "true"}})
