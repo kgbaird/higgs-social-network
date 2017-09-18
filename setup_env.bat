@@ -10,7 +10,7 @@ rem   Machine may or may not have networt access. Which pipeline_components_env 
 echo %~nx0 %DATE:~-4%-%DATE:~4,2%-%DATE:~7,2% %TIME%: Setting up environment
 
 SET PATH_PIPELINE_COMPONENTS_ENV=S:\PRM\Pipeline_Components_Env\pipeline_components_env.bat
-rem SET PATH_PIPELINE_COMPONENTS_ENV=%USERPROFILES%\scrap\pipeline_components_env.bat
+rem SET PATH_PIPELINE_COMPONENTS_ENV=%USERPROFILE%\scrap\pipeline_components_env.bat
 
 rem ### LIBRARIES, LOCATIONS, LITERALS, ETC. GO ABOVE HERE
 
