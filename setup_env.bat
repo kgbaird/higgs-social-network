@@ -15,7 +15,7 @@ rem SET PATH_PIPELINE_COMPONENTS_ENV=%USERPROFILES%\scrap\pipeline_components_en
 rem ### LIBRARIES, LOCATIONS, LITERALS, ETC. GO ABOVE HERE
 
 echo %~nx0 %DATE:~-4%-%DATE:~4,2%-%DATE:~7,2% %TIME%: Calling pipeline_components_env from %PATH_PIPELINE_COMPONENTS_ENV%
-call "%PATH_PIPELINE_COMPONENTS_ENV%
+call "%PATH_PIPELINE_COMPONENTS_ENV%"
 
 echo %~nx0 %DATE:~-4%-%DATE:~4,2%-%DATE:~7,2% %TIME%: Adding local python library to PYTHONPATH
 set PYTHONPATH=%~dp0python;%PYTHONPATH%
